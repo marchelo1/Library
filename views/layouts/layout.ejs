@@ -7,10 +7,9 @@
   </head>
   <body>
    <!--all the code of our application goes here, before and after every single page-->
-  Before 
-  <br>
-  <%- body %>    <!--Content of everything of our application from index.ejs-->
-  <br>
-  After
+ 
+  <%- include('../partials/header.ejs') %> <!--Including everything from ../partials/header.ejs-->
+    <%- include('../partials/errorMessage.ejs') %> <!--Including everything from ../partials/errorMessage.ejs-->
+  <%- body %>    <!--Content of everything from our application from ./views/index.ejs-->
   </body>
 </html>

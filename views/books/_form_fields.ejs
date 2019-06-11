@@ -1,0 +1,43 @@
+<div>
+<!--Form input for a title-->
+<label>Title</label>
+<input type="text" name="title" value="<%= book.title %>"> <!-- This sign %= tell the server to create book.title you got from inside <%=   %> this -->
+ </div>
+<div>
+ <!--Form input for a Author-->
+ <label>Author</label>
+  <select name="author">
+<% authors.forEach(author => { %>  <!-- loop for every author-->
+    <% if (author.id === book.author) { %>   <!--if equal to book.author from /models/book.js this will be a selected option-->
+      <option selected label="<%= author.name %>" value="<%= author.id %>">
+    <% } else { %>
+      <option label="<%= author.name %>" value="<%= author.id %>">
+    <% } %>
+  <% }) %>
+  </select>
+</div>
+<div>
+<!--Form input for a Publish Date-->
+<label>Publish Date</label>
+  <input type="date" name="publishDate"
+        value="<%= book.publishDate == null ? '' :  
+        book.publishDate.toISOString().split('T')[0] %>"> <!-- separete years and times -->
+ </div>
+ <div>
+<!--Form input for a Page Count-->
+ <label>Page Count</label>
+  <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>">
+ </div>
+ </div>
+<!--Form input for Cover-->
+ <div>
+  <label>Cover</label>
+  <input type="file" name="cover">  <!-- file img -->
+</div>
+<!--Form input for Description-->
+<div>
+  <label>Description</label>
+  <textarea name="description"><%= book.description %></textarea>
+</div>
+
+

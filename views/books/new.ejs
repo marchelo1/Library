@@ -1,0 +1,7 @@
+<!--Creating a form for creating a new bookr-->
+<h2>New Book</h2>
+<form action="/books" method="POST" enctype="multipart/form-data">  <!--Sending post request to a server-->
+  <%- include('_form_fields') %>   <!--Creating new partials file in ../books/_form_fields.ejs for name label-->
+  <a href="/books">Cancel</a>
+  <button type="submit">Create</button>
+</form>

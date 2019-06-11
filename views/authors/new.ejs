@@ -1,8 +1,9 @@
 <!--Creating a form for creating a new author-->
     
+
 <h2>New Author</h2>
-<form action="/authors" method="POST">  <!--Sending post request to a server-->
-  <%- include('_form_fields') %>   <!--Creating new partials file in ../authors/_form_fields.ejs for name label-->
+<form action="/authors" method="POST"> <!--Sending post request to a server-->
+  <%- include('_form_fields') %>       <!--Creating new partials file in ../authors/_form_fields.ejs for name label-->
   <a href="/authors">Cancel</a>
   <button type="submit">Create</button>
 </form>

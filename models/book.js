@@ -1,7 +1,5 @@
 // With mongoose we connecting our MongoDb
 const mongoose = require('mongoose');
-const path = require('path');
-const coverImageBasePath = 'upload/bookCovers'; // Path to all our images that we are stored in upload/bookCovers
 
 // Creating Schema in MongoDb or NoSQL libraries, schema is essentially the same thing as a table in the normal SQL database
 const bookSchema = new mongoose.Schema({
@@ -26,8 +24,12 @@ const bookSchema = new mongoose.Schema({
     required: true,
     default: Date.now
   },
-  coverImageName: {
-    // saving cover as a String in our server
+  coverImage: {
+    // saving cover as a Data in our server
+    type: Buffer,
+    required: true
+  },
+  coverImageType: {
     type: String,
     required: true
   },
@@ -36,14 +38,12 @@ const bookSchema = new mongoose.Schema({
   }
 });
 
-// Creating a virtual property
+// Converting our database coverImage Buffer and the Type coverImageType into image object 
 bookSchema.virtual('coverImagePath').get(function () {
-  if (this.coverImageName != null) {
-    return path.join('/', coverImageBasePath, this.coverImageName);
+  if (this.coverImage != null && this.coverImageType != null) {
+    return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}` // return the source of our image object
   }
 });
 
 //exporting our Schema to a new model bookSchema
 module.exports = mongoose.model("Book", bookSchema);
-// exporting our Cover image Base path
-module.exports.coverImageBasePath = coverImageBasePath;

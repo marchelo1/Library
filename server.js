@@ -3,11 +3,12 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-//express server
-const express = require("express");
+
+const express = require("express"); //express server
 const app = express();
-const expressLayouts = require("express-ejs-layouts");
-const bodyParser = require("body-parser");
+const expressLayouts = require("express-ejs-layouts"); // Layout support for ejs in express
+const bodyParser = require("body-parser"); // middleware that reads a form's input and stores it as a javascript object accessible through req.body
+const methodOverride = require('method-override'); // allows us to take a POST form and send to a server, with put or delete request
 
 // export our Router from /routes/index.js
 const indexRouter = require("./routes/index");
@@ -20,6 +21,7 @@ app.set("view engine", "ejs"); // setting view engine to generate HTML with plai
 app.set("views", __dirname + "/views"); // from directory views
 app.set("layout", "layouts/layout"); // putting all our html file, as header and footer in one file
 app.use(expressLayouts); // use layouts
+app.use(methodOverride('_method')); // telling our app that use that
 app.use(express.static("public")); // in public folder we put css, js, img etc
 app.use(
   bodyParser.urlencoded({

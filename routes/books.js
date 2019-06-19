@@ -54,6 +54,21 @@ router.post('/', async (req, res) => { //multer tell us that we are upload singl
   }
 });
 
+
+// Show Book Route
+router.get('/:id', async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id)
+      .populate('author') // populate means that we will fill informations of author
+      .exec()
+    res.render('books/show', {
+      book: book
+    })
+  } catch {
+    res.redirect('/')
+  }
+});
+
 async function renderNewPage(res, book, hasError = false) {
   try {
     const authors = await Author.find({});

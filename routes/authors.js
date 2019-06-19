@@ -30,7 +30,7 @@ router.get('/new', async (req, res) => {
 });
 
 // Create Author Route
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   const author = new Author({
     name: req.body.name // Get name
   });
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     const newAuthor = await author.save() // this will await to save, then will create newAuthor
     res.redirect(`authors/${newAuthor.id}`)
   } catch {
-    res.render("authors/new", {
+    res.render('authors/new', {
       author: author,
       errorMessage: 'Error creating Author'
     });

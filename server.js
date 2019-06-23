@@ -1,7 +1,7 @@
 //checking if we are producing in our local environment
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
-}
+};
 
 
 const express = require("express"); //express server

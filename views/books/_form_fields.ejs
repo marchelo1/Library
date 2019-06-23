@@ -1,10 +1,11 @@
-<div>
+<div class="form-row">
+<div class="form-item">
 <!--Form input for a title-->
 <label>Title</label>
 <input type="text" name="title" value="<%= book.title %>"> <!-- This sign %= tell the server to create book.title you got from inside <%=   %> this -->
- </div>
-<div>
- <!--Form input for a Author-->
+</div>
+<div class="form-item">
+<!--Form input for a Author-->
  <label>Author</label>
   <select name="author">
 <% authors.forEach(author => { %>  <!-- loop for every author-->
@@ -16,28 +17,33 @@
   <% }) %>
   </select>
 </div>
-<div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
 <!--Form input for a Publish Date-->
 <label>Publish Date</label>
   <input type="date" name="publishDate"
         value="<%= book.publishDate == null ? '' :  
         book.publishDate.toISOString().split('T')[0] %>"> <!-- separete years and times -->
  </div>
- <div>
+ <div class="form-item">
 <!--Form input for a Page Count-->
  <label>Page Count</label>
   <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>">
  </div>
  </div>
 <!--Form input for Cover-->
- <div>
+<div class="form-row">
+  <div class="form-item form-item-no-grow">
   <label>Cover</label>
   <input type="file" name="cover" class="filepond">  <!-- file img -->
 </div>
 <!--Form input for Description-->
-<div>
+<div class="form-item">
   <label>Description</label>
   <textarea name="description"><%= book.description %></textarea>
+</div>
 </div>
 
 

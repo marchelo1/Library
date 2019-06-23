@@ -3,8 +3,6 @@ const router = express.Router();
 const Author = require('../models/author');
 const Book = require('../models/book');
 
-
-
 // All Authors Route
 router.get('/', async (req, res) => {
   let searchOptions = {} // this will store all object and put it in searchOptions
@@ -23,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 // New Author Route
-router.get('/new', async (req, res) => {
+router.get('/new', (req, res) => {
   res.render('authors/new', {
     author: new Author()
   }); // Create new page for authors, its help us to save, delete, and update things inside of database and give us an object that we can use in ejs file
@@ -45,23 +43,23 @@ router.post('/', async (req, res) => {
   }
 });
 
-// geting id from url
+// Geting id from url
 router.get('/:id', async (req, res) => {
   try {
     const author = await Author.findById(req.params.id)
     const books = await Book.find({
       author: author.id
-    }).limit(6).exec() // show only 6 books 
+    }).limit(6).exec() // Show only 6 books 
     res.render('authors/show', {
       author: author,
       booksByAuthor: books
     })
   } catch {
-    res.redirect('/');
+    res.redirect('/')
   }
 });
 
-// edit id 
+// Edit id
 router.get('/:id/edit', async (req, res) => {
   try {
     const author = await Author.findById(req.params.id)
@@ -78,7 +76,7 @@ router.put('/:id', async (req, res) => {
   let author
   try {
     author = await Author.findById(req.params.id)
-    author.name = req.body.name; // after update change the name of author
+    author.name = req.body.name // after update change the name of author
     await author.save() // this will await to save same Author
     res.redirect(`/authors/${author.id}`)
   } catch {
@@ -88,7 +86,7 @@ router.put('/:id', async (req, res) => {
       res.render('authors/edit', {
         author: author,
         errorMessage: 'Error updating Author'
-      });
+      })
     }
   }
 });
@@ -98,16 +96,15 @@ router.delete('/:id', async (req, res) => {
   let author
   try {
     author = await Author.findById(req.params.id)
-    await author.remove() // this will delete the Author
-    res.redirect(`/authors`)
+    await author.remove() // this will delete the Author if server find anyone
+    res.redirect('/authors')
   } catch {
     if (author == null) {
       res.redirect('/') // If dont find authors, back to the homepage
     } else {
       res.redirect(`/authors/${author.id}`)
     }
-  }
-
+  };
 });
 
 

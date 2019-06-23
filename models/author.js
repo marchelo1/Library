@@ -25,4 +25,4 @@ authorSchema.pre('remove', function (next) { // callback function next means tha
 });
 
 //exporting our Schema to a new model authorSchema
-module.exports = mongoose.model('Author', authorSchema)
+module.exports = mongoose.model('Author', authorSchema);

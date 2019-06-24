@@ -1,5 +1,5 @@
 :root {
-  --nav-title-font-size: 3rem;
+  --nav-title-font-size: 2.7rem;
   --nav-title-font-weight: bold;
   --nav-link-font-weight: 300;
 }
@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4.2rem;
 }
 
 .header-nav ul {

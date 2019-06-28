@@ -150,7 +150,7 @@ async function renderFormPage(res, book, form, hasError = false) {
 
 function saveCover(book, coverEncoded) {
   if (coverEncoded == null) return
-  const cover = JSON.parse(coverEncoded) // coverEncoded is JSON file parsed into single JSON objec cover
+  const cover = JSON.parse(coverEncoded) // coverEncoded is JSON file parsed into single JSON object cover
   if (cover != null && imageMimeTypes.includes(cover.type)) { // Check the img type
     book.coverImage = new Buffer.from(cover.data, 'base64') // converting cover img into data 
     book.coverImageType = cover.type // so we can extract our Buffer data into our imge

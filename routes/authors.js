@@ -7,7 +7,7 @@ const Book = require('../models/book');
 router.get('/', async (req, res) => {
   let searchOptions = {} // this will store all object and put it in searchOptions
   if (req.query.name != null && req.query.name !== '') { // query is an optional part of a URL that we get after post request 
-    searchOptions.name = new RegExp(req.query.name, 'i') // if we have the name that we will add it to a search options, and add Reagular Expression and 'i' means it case sensitive
+    searchOptions.name = new RegExp(req.query.name, 'i') // if we have the name that we will add it to a search options, and add Regular Expression and 'i' means it case sensitive
   }
   try {
     const authors = await Author.find(searchOptions) // get all Authors in search options
@@ -99,13 +99,12 @@ router.delete('/:id', async (req, res) => {
     await author.remove() // this will delete the Author if server find anyone
     res.redirect('/authors')
   } catch {
-    if (author == null) {
-      res.redirect('/') // If dont find authors, back to the homepage
-    } else {
+    if (author == null) {} else {
       res.redirect(`/authors/${author.id}`)
     }
   };
 });
+
 
 
 module.exports = router;

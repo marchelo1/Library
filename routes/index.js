@@ -4,6 +4,7 @@ const router = express.Router();
 const Book = require('../models/book');
 
 
+
 //Root of our application
 router.get('/', async (req, res) => {
     let books
@@ -18,6 +19,8 @@ router.get('/', async (req, res) => {
         books: books
     })
 });
+
+
 
 // Export our router to set up our application
 module.exports = router;
